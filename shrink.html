@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html> 
+<head>
+<meta charset=utf-8 />
+<title>JavaScript program to calculate multiplication and division of two numbers </title>
+<style type="text/css">
+body {margin: 30px;}
+</style>
+ <script>
+     
+function hideDiv() {
+      document.getElementById("calculation").style.display = 'none';    
+    }
+     
+function downtime() 
+{ 
+   var x = document.getElementById("calculation");
+    x.style.display = "block";
+   
+         num1 = document.getElementById("curr_usage").value;
+        num2 = document.getElementById("vcpu").value;
+    
+        document.getElementById("curr_usage_").innerHTML=num1;
+        document.getElementById("vcpu_").innerHTML=num2;
+        document.getElementById("curr_usage__").innerHTML=num1;
+        document.getElementById("curr_usage___").innerHTML=num1;
+        document.getElementById("vcpu__").innerHTML=num2;
+   
+    if (num2==1)
+        {
+            num2=72
+        }
+    else if(num2==2) {
+        num2=144
+        
+    }
+    else if(num2==4) {
+        num2=240
+        alert(num2);
+    }
+    else if(num2==8) {
+        num2=400
+        alert(num2);
+    }
+      
+    else if(num2==16) {
+        num2=800
+        alert(num2);
+    }
+
+    else
+    {
+        alert("Please provide the valid number of vCPUs.")
+    }
+    document.getElementById("result_in_sec").innerHTML = (num1*1024 / num2).toFixed(2)+" Seconds";
+    document.getElementById("result_in_min").innerHTML = ((num1*1024 / num2)/60).toFixed(2)+" Minutes";
+    document.getElementById("result_in_min_").innerHTML = ((num1*1024 / num2)/60).toFixed(2)+" Minutes";
+    document.getElementById("result_in_min__").innerHTML = ((num1*1024 / num2)/60).toFixed(2)+" Minutes";
+    document.getElementById("Downtime_in_min").innerHTML =((2.5*(num1*1024 / num2)/60)+15).toFixed(2);
+    document.getElementById("Downtime_in_min_").innerHTML =((2.5*(num1*1024 / num2)/60)+15).toFixed(2);
+    document.getElementById("Downtime_in_hours").innerHTML =(((2.5*(num1*1024 / num2)/60)+15)/60).toFixed(2);
+    document.getElementById("Downtime_in_hours_").innerHTML =(((2.5*(num1*1024 / num2)/60)+15)/60).toFixed(2);
+
+    }
+
+  </script>
+    
+</head>
+ <body onload="hideDiv()">
+   <h2>Downtime Calculation for Cloud SQL disk shrink operation.</h2>
+    <form>
+       <table>
+          <tr>
+            <td align="right">Current Disk Usage (In GB):</td>
+            <td align="left"><input type="text" id="curr_usage" /></td>
+          </tr>
+          <tr>
+            <td align="right">Cloud SQL Instance vCPUs:</td>
+            <td align="left"><input type="text" id="vcpu" /></td>
+          </tr>
+
+          <tr>
+            <td></td>
+            <td align="left"> <input type="button" onClick="downtime()" Value="Calculate"/> </td>
+          </tr>
+         </table>
+    </form>
+    
+    
+<div id="calculation">
+<p>time_to_copy_used-disk-space_on_instance(Seconds) : <span id = "result_in_sec"> </span>
+<p>time_to_copy_used-disk-space_on_instance(Minutes) : <span id = "result_in_min"> </span>
+<p>Downtime = (2.5×time_to_copy_used-disk-space_on_instance) + 15 minutes<br>
+<p>Downtime in min : <span id = "Downtime_in_min"> </span><br><br>
+   
+
+    
+   <b> As per the current configuration (<span id="vcpu_"></span> vCPUs), and current disk usage <span id="curr_usage_"></span>GB It would take <span id = "Downtime_in_hours"> </span> hours. <br><br></b>
+
+    <b>Downtime Calculation:</b><br><br>  
+
+    Calculation as per <span id="vcpu__"></span> vCPUs and <span id="curr_usage__"></span>GB of disk usage.<br><br> 
+    Downtime = (2.5×time_to_copy_used-disk-space_on_instance) + 15 minutes<br><br>
+    time_to_copy_used-disk-space_on_instance =   <span id="curr_usage___"></span> * 1024 /144 = <span id = "result_in_min_"> </span> <br><br>
+    Downtime = (2.5 × <span id = "result_in_min__"> </span>) + 15 = <span id = "Downtime_in_min_"> </span> minutes<br><br>
+    Downtime = <span id = "Downtime_in_hours_"> </span> hours.
+   
+    </div>
+
+</body>
+</html>
